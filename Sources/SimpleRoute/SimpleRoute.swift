@@ -85,6 +85,10 @@ public class Router: ObservableObject {
         _ = routes.popLast()
     }
     
+    public func popToRoot() {
+        routes.removeAll()
+    }
+    
     public func popTo(routeId id: any Hashable) throws {
         guard let index = routes.lastIndex(where: { route in
             route.id.hashValue == id.hashValue
