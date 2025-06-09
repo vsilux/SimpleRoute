@@ -8,8 +8,8 @@ let package = Package(
     name: "SimpleRoute",
     platforms: [
         .macOS(.v14),
-        .iOS(.v13),
-        .tvOS(.v13),
+        .iOS(.v16),
+        .tvOS(.v16),
         .watchOS(.v6),
         .macCatalyst(.v13)
     ],
@@ -31,17 +31,14 @@ let package = Package(
         .target(
             name: "SimpleRoute",
             dependencies: [
-                .target(name: "RouteModel")
+                .target(name: "RouteModel"),
             ]
         ),
         .testTarget(
             name: "SimpleRouteTests",
             dependencies: ["SimpleRoute"]
         ),
-        
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
-        // Macro implementation that performs the source transformation of a macro.
+       
             .macro(
                 name: "RouteModelMacros",
                 dependencies: [
