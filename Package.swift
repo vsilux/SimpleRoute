@@ -31,7 +31,7 @@ let package = Package(
         .target(
             name: "SimpleRoute",
             dependencies: [
-                .target(name: "RouteModel"),
+                "RouteModelMacros",
             ]
         ),
         .testTarget(
