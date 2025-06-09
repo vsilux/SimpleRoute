@@ -75,6 +75,10 @@ public struct AnyRoute: Route, Hashable {
 public class Router: ObservableObject {
     @Published public var routes: [AnyRoute] = []
     
+    var canPop: Bool {
+        !routes.isEmpty
+    }
+    
     public init() {}
     
     public func navigate(to route: any Route) {
@@ -82,11 +86,19 @@ public class Router: ObservableObject {
     }
     
     public func pop() {
-        _ = routes.popLast()
+        guard !routes.isEmpty else { return }
+        routes.removeLast()
     }
     
     public func popToRoot() {
-        routes.removeLast(routes.count)
+        routes.removeAll()
+    }
+
+    public func replace(with route: any Route) {
+        if !routes.isEmpty {
+            routes.removeLast()
+        }
+        routes.append(AnyRoute(route))
     }
     
     public func popTo(routeId id: any Hashable) throws {
