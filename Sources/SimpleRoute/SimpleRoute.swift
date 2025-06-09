@@ -4,22 +4,22 @@
 import SwiftUI
 import Foundation
 
-protocol Route: Hashable, Identifiable {
+public protocol Route: Hashable, Identifiable {
     associatedtype Destination: View
     var destination: Destination { get }
 }
 
 @Observable
-class Router {
-    var routes: [any Route] = []
+public class Router {
+    public var routes: [any Route] = []
 }
 
-struct RouterKey: EnvironmentKey {
-    nonisolated(unsafe) static let defaultValue: Router = Router()
+public struct RouterKey: EnvironmentKey {
+    public nonisolated(unsafe) static let defaultValue: Router = Router()
 }
 
 extension EnvironmentValues {
-    var router: Router {
+    public var router: Router {
         get { self[RouterKey.self] }
         set { self[RouterKey.self] = newValue }
     }
