@@ -37,7 +37,7 @@ public protocol Route: Hashable, Identifiable {
     var destination: Destination { get }
 }
 
-public typealias RouteProvider = (any Route) -> Void
+public typealias RouteHandler = (any Route) -> Void
 
 public struct AnyRoute: Route, Hashable {
     private let wrappedRoute: any Route
