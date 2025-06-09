@@ -10,9 +10,9 @@ protocol Route: Hashable, Identifiable {
     var destination: Destination { get }
 }
 
-@Observable
+
 public
-class Router {
+class Router: ObservableObject {
     public
     var routes: [any Route] = []
     
