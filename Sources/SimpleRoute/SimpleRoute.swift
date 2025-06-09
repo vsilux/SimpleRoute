@@ -6,7 +6,6 @@ import Foundation
 
 protocol Route: Hashable, Identifiable {
     associatedtype Destination: View
-    
     var destination: Destination { get }
 }
 
