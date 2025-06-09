@@ -86,7 +86,7 @@ public class Router: ObservableObject {
     }
     
     public func popToRoot() {
-        routes.removeAll()
+        routes.removeLast(routes.count)
     }
     
     public func popTo(routeId id: any Hashable) throws {
