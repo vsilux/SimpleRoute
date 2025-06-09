@@ -1,27 +1,9 @@
-import RouteModel
 import SwiftUI
-
-protocol Route: Hashable, Identifiable {
-    associatedtype Destination: View
-    
-    var destination: Destination { get }
-}
+import SimpleRoute
 
 protocol Auth {
     var isAuthenticated: Bool { get }
 }
-
-@RouteModel
-struct HomeRoute: Route {
-    var id: String { "home" }
-    var auth: any Auth
-    
-    @ViewBuilder
-    var destination: some View {
-        Text("Home")
-    }
-}
-
 
 struct HomeView: View {
     var body: some View {
@@ -32,5 +14,20 @@ struct HomeView: View {
 struct LoginView: View {
     var body: some View {
         Text("Login")
+    }
+}
+
+struct InitialView: View {
+    @StateObject var router = Router()
+    
+    var body: some View {
+        NavigationStack(path: $router.routes) {
+            VStack {
+                Text("Welcome to the App")
+            }
+            .navigationDestination(for: AnyRoute.self) { route in
+                route.destination
+            }
+        }
     }
 }

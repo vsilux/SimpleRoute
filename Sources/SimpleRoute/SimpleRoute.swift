@@ -37,6 +37,8 @@ public protocol Route: Hashable, Identifiable {
     var destination: Destination { get }
 }
 
+typealias RouteProvider = (any Route) -> Void
+
 public struct AnyRoute: Route, Hashable {
     private let wrappedRoute: any Route
     private let hashValueProvider: () -> Int
@@ -75,7 +77,7 @@ public class Router: ObservableObject {
     
     public init() {}
     
-    public func navigate(to route: Route) {
+    public func navigate(to route: any Route) {
         routes.append(AnyRoute(route))
     }
     
